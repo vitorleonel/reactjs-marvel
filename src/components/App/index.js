@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 
 import {
   Container,
-  Row,
-  Col,
+  CardColumns,
   Card,
   CardImg,
   CardBody,
@@ -40,10 +39,8 @@ function App({ heroes, hero, pagination, getHeroes, selectHero }) {
 
   function renderHero(hero) {
     return (
-      <Card key={hero.name}>
+      <Card key={Math.random() + hero.name}>
         <CardImg
-          top
-          width="100%"
           src={`${hero.thumbnail.path}.${hero.thumbnail.extension}`}
           alt={hero.name}
         />
@@ -58,11 +55,7 @@ function App({ heroes, hero, pagination, getHeroes, selectHero }) {
 
   return (
     <Container>
-      <Row>
-        {heroes.map(hero => (
-          <Col xs="3">{renderHero(hero)}</Col>
-        ))}
-      </Row>
+      <CardColumns>{heroes.map(hero => renderHero(hero))}</CardColumns>
 
       {hero && <HeroDetail />}
     </Container>

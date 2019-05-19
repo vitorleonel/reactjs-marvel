@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 
 import { connect } from "react-redux";
 import { setHero } from "../../store/actions";
@@ -10,39 +10,48 @@ function HeroDetail({ hero, close }) {
 
   return (
     <Modal isOpen toggle={close}>
-      <>
-        <ModalHeader>
+      <ModalBody>
+        <div className="border-bottom mb-3">
           <img
+            className="w-100"
             src={`${hero.thumbnail.path}.${hero.thumbnail.extension}`}
             alt={hero.name}
-            style={{ width: "100%" }}
           />
 
-          <h2 style={{ marginTop: "16px" }}>{hero.name}</h2>
-        </ModalHeader>
+          <h3 className="pt-3">{hero.name}</h3>
+          <p>{hero.p ? hero.p : "Descrição não encontrada"}</p>
+        </div>
 
-        <ModalBody>
-          {hero.p ? <p>{hero.p}</p> : <p>Descrição não encontrada.</p>}
+        <div>
+          <h5 className="my-3">Series</h5>
 
-          <h4 h4>Series</h4>
+          <ul className="list-group">
+            {hero.series.items.map(item => (
+              <li className="list-group-item" key={item.name}>
+                {item.name}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          {hero.series.items.map(item => (
-            <p key={item.name}>{item.name}</p>
-          ))}
+        <div>
+          <h5 className="my-3">Histórias</h5>
 
-          <h4 h4>Histórias</h4>
+          <ul className="list-group">
+            {hero.stories.items.map(item => (
+              <li className="list-group-item" key={item.name}>
+                {item.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </ModalBody>
 
-          {hero.stories.items.map(item => (
-            <p key={item.name}>{item.name}</p>
-          ))}
-        </ModalBody>
-
-        <ModalFooter>
-          <Button color="primary" onClick={close}>
-            Fechar
-          </Button>
-        </ModalFooter>
-      </>
+      <ModalFooter>
+        <Button color="primary" onClick={close}>
+          Fechar
+        </Button>
+      </ModalFooter>
     </Modal>
   );
 }
