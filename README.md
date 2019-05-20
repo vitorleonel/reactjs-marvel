@@ -1,9 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-```
-Dentro da pasta src/configs renomeie o arquivo index.example.js para index.js e defina suas credenciais.
-```
-
 ## Available Scripts
 
 In the project directory, you can run:
