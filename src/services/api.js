@@ -1,9 +1,8 @@
 import axios from "axios";
 import md5 from "js-md5";
-import config from "../configs";
 
-const publicKey = config.marvel.publicKey;
-const privateKey = config.marvel.privateKey;
+const publicKey = process.env.MARVEL_PUBLIC_KEY;
+const privateKey = process.env.MARVEL_PRIVATE_KEY;
 
 const instance = axios.create({
   baseURL: "https://gateway.marvel.com"
